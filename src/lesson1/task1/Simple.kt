@@ -143,10 +143,10 @@ fun accountInThreeYears(initial: Int, percent: Int): Double =
  */
 fun numberRevert(number: Int): Int {
     var a = number
-    var are = 0
+    var arev = 0
     while (a > 0) {
-        are = are * 10 + a % 10
+        arev = arev * 10 + a % 10
         a /= 10
     }
-    return are
+    return arev
 }
