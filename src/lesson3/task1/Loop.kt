@@ -87,7 +87,12 @@ fun fib(n: Int): Int = TODO()
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    for (i in 2..sqrt(n.toDouble()).toInt()) {
+        if (n % i == 0) return i
+    }
+    return n
+}
 
 /**
  * Простая (2 балла)
@@ -112,7 +117,16 @@ fun maxDivisor(n: Int): Int = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int {
+    var a1 = x
+    var a2 = 0
+    while (a1 != 1) {
+        if (a1 % 2 == 0) a1 /= 2
+        else a1 = 3 * a1 + 1
+        a2++
+    }
+    return a2
+}
 
 /**
  * Средняя (3 балла)
@@ -138,8 +152,15 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
-
+fun revert(n: Int): Int {
+    var a1 = 0
+    var a2 = n
+    while (a2 != 0) {
+        a1 = (a1 * 10) + a2 % 10
+        a2 /= 10
+    }
+    return a1
+}
 /**
  * Средняя (3 балла)
  *
@@ -149,7 +170,7 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean = revert(n) == n
 
 /**
  * Средняя (3 балла)

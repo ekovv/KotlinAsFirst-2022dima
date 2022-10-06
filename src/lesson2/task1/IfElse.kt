@@ -151,14 +151,17 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = when {
-    (a + b > c && b + c > a && a + c > b) -> -1
-    (a.pow(2) + b.pow(2) == c.pow(2)) -> 1
-    (a.pow(2) + b.pow(2) > c.pow(2)) -> 0
-    else -> 2
-    //я не понимаю.. я уже все попробовал ничего не работает... подскажите пожалуйста
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    val maxline = maxOf(a, b, c)
+    val minline = minOf(a, b, c)
+    val midline = a + b + c - maxline - minline
+    return when {
+        (a + b < c || b + c < a || a + c < b) -> -1
+        (minline.pow(2) + midline.pow(2) == maxline.pow(2)) -> 1
+        (minline.pow(2) + midline.pow(2) > maxline.pow(2)) -> 0
+        else -> 2
+    }
 }
-
 
 /**
  * Средняя (3 балла)
@@ -168,12 +171,12 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = when {
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-    return when {
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int =
+    when {
         (a in c..d && b in c..d) -> b - a
         (c in a..b && d in a..b) -> d - c
         (a in c..d) -> d - a
         (c in a..b) -> b - c
         else -> -1
     }
-}
+
