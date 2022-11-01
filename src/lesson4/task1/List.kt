@@ -127,7 +127,12 @@ fun abs(v: List<Double>): Double = TODO()
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
+fun mean(list: List<Double>): Double {
+
+    val a3 = list.sum() / list.size
+    return if (list.isEmpty()) 0.0
+    else a3
+}
 
 /**
  * Средняя (3 балла)
@@ -137,7 +142,13 @@ fun mean(list: List<Double>): Double = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> {
+    val a1 = list.sum() / list.size
+    for (i in 0..list.size - 1) {
+        list[i] -= a1
+    }
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -168,7 +179,13 @@ fun polynom(p: List<Int>, x: Int): Int = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
+fun accumulate(list: MutableList<Int>): MutableList<Int> {
+
+    for (i in 1..list.size) {
+        list[i] = list[i - 1] + list[i]
+    }
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -241,7 +258,32 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun roman(n: Int): String = TODO()
+fun roman(n: Int): String {
+    val leq = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+    val lev = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    val listOfChars = mutableListOf<String>()
+    fun inner(num: Int, listOfChars: MutableList<String>): MutableList<String> {
+        for (i in 0..lev.size - 1) {
+            if (lev[i] <= num) {
+                listOfChars.add(leq[i])
+                inner(num - lev[i], listOfChars)
+                return listOfChars
+            }
+            if (lev[i] < 0) {
+                return listOfChars
+            }
+        }
+        return listOfChars
+    }
+
+    return inner(n, listOfChars).joinToString()
+
+
+}
+
+
+
+
 
 /**
  * Очень сложная (7 баллов)
@@ -251,3 +293,5 @@ fun roman(n: Int): String = TODO()
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
 fun russian(n: Int): String = TODO()
+
+
