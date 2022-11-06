@@ -90,14 +90,7 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double {
-    val l1 = t1 * v1
-    val l2 = t2 * v2
-    val l3 = t3 * v3
-    val lh = ((l1 + l2 + l3) / 2)
-    return lh
-    // не понимаю...
-}
+): Double = TODO()
 
 
 /**
@@ -151,17 +144,8 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int {
-    val maxline = maxOf(a, b, c)
-    val minline = minOf(a, b, c)
-    val midline = a + b + c - maxline - minline
-    return when {
-        (a + b < c || b + c < a || a + c < b) -> -1
-        (minline.pow(2) + midline.pow(2) == maxline.pow(2)) -> 1
-        (minline.pow(2) + midline.pow(2) > maxline.pow(2)) -> 0
-        else -> 2
-    }
-}
+fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+
 
 /**
  * Средняя (3 балла)

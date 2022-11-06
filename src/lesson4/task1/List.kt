@@ -180,8 +180,7 @@ fun polynom(p: List<Int>, x: Int): Int = TODO()
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun accumulate(list: MutableList<Int>): MutableList<Int> {
-
-    for (i in 1..list.size) {
+    for (i in 1..list.size - 1) {
         list[i] = list[i - 1] + list[i]
     }
     return list
@@ -259,29 +258,24 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
 fun roman(n: Int): String {
-    val leq = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
-    val lev = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
     val listOfChars = mutableListOf<String>()
-    fun inner(num: Int, listOfChars: MutableList<String>): MutableList<String> {
-        for (i in 0..lev.size - 1) {
-            if (lev[i] <= num) {
-                listOfChars.add(leq[i])
-                inner(num - lev[i], listOfChars)
-                return listOfChars
-            }
-            if (lev[i] < 0) {
-                return listOfChars
-            }
-        }
-        return listOfChars
-    }
-
-    return inner(n, listOfChars).joinToString()
-
-
+    return inner(n, listOfChars).joinToString().replace(", ", "")
 }
+val leq = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+val lev = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+fun inner(num: Int, listOfChars: MutableList<String>): MutableList<String> {
+    for (i in 0..lev.size - 1) {
+        if (lev[i] <= num) {
+            listOfChars.add(leq[i])
+            inner(num - lev[i], listOfChars)
+            return listOfChars
+        } else if (num == 0) {
+            return listOfChars
+        }
 
-
+    }
+    return listOfChars
+}
 
 
 
