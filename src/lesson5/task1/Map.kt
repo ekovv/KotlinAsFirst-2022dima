@@ -172,10 +172,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
             a1[key] = a1[key] + ", " + value
         }
         else {
-            if (value == a1[key]) continue
             a1[key] = value
-
-
         }
     }
     for ((key, value) in mapB) {
@@ -183,10 +180,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
             a1[key] = a1[key] + ", " + value
         }
         else {
-            if (value == a1[key]) continue
             a1[key] = value
-
-
         }
     }
     return a1
