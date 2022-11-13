@@ -144,7 +144,6 @@ fun bestHighJump(jumps: String): Int = TODO()
  */
 fun plusMinus(expression: String): Int = TODO()
 
-
 /**
  * Сложная (6 баллов)
  *
@@ -168,10 +167,7 @@ fun firstDuplicateIndex(str: String): Int {
         }
     }
     return -1
-
 }
-
-
 
 /**
  * Сложная (6 баллов)
@@ -201,7 +197,6 @@ fun mostExpensive(description: String): String {
             maxStr = key
             maxInt = value
         }
-
     }
     return maxStr
 }
