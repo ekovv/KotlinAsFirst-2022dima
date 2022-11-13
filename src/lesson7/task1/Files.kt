@@ -2,7 +2,8 @@
 
 package lesson7.task1
 
-import java.io.File
+import ru.spbstu.wheels.out
+import java.io.*
 
 // Урок 7: работа с файлами
 // Урок интегральный, поэтому его задачи имеют сильно увеличенную стоимость
@@ -63,7 +64,14 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Подчёркивание в середине и/или в конце строк значения не имеет.
  */
 fun deleteMarked(inputName: String, outputName: String) {
-    TODO()
+    val linesFromFile = File(inputName).readLines()
+    var info = ""
+    for (line in linesFromFile) {
+        if (line == "" || line.first() != '_') {
+            info += line + "\n"
+        }
+    }
+    FileWriter(outputName).use { it.write(info) }
 }
 
 /**
