@@ -146,6 +146,8 @@ fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>) {
  */
 fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = TODO()
 
+
+
 /**
  * Средняя (3 балла)
  *
@@ -163,7 +165,34 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = TODO()
  *     mapOf("Emergency" to "911", "Police" to "02")
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
-fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> = TODO()
+fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
+    val a1 = mutableMapOf<String, String>()
+    for ((key, value) in mapA) {
+        if (a1[key] != null && value !== a1[key]) {
+            a1[key] = a1[key] + ", " + value
+        }
+        else {
+            if (value == a1[key]) continue
+            a1[key] = value
+
+
+        }
+    }
+    for ((key, value) in mapB) {
+        if (a1[key] != null && value !== a1[key]) {
+            a1[key] = a1[key] + ", " + value
+        }
+        else {
+            if (value == a1[key]) continue
+            a1[key] = value
+
+
+        }
+    }
+    return a1
+}
+
+
 
 /**
  * Средняя (4 балла)
@@ -192,7 +221,7 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  *     "печенье"
  *   ) -> "Мария"
  */
-fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? = TODO()
+fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String = TODO()
 
 /**
  * Средняя (3 балла)

@@ -90,7 +90,16 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    val l1 = t1 * v1
+    val l2 = t2 * v2
+    val l3 = t3 * v3
+    val lfull = (l1 + l2 + l3) / 2
+    return if (lfull <= l1) lfull / v1
+    else if (lfull <= l1 + l2) t1 + (lfull - l1) / v2
+    else t1 + t2 + ((lfull - l1 - l2) / v3)
+}
+
 
 
 /**
@@ -144,7 +153,14 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    if (a >= c + b || c >= a + b || b >= a + c) return -1
+    return when {
+        maxOf(a, b, c).pow(2) == min(max(a, b), c).pow(2) + min(a, b).pow(2) -> 1
+        maxOf(a, b, c).pow(2) < min(max(a, b), c).pow(2) + min(a, b).pow(2) -> 0
+        else -> 2
+    }
+}
 
 
 /**
