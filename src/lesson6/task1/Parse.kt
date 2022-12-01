@@ -189,7 +189,7 @@ fun mostExpensive(description: String): String {
     var maxInt = 0.0
     var maxStr = ""
     for ((key, value) in a2) {
-        if (value >= maxInt) {
+        if (value > maxInt) {
             maxStr = key
             maxInt = value
         }
