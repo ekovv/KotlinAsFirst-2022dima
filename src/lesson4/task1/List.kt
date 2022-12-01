@@ -256,7 +256,7 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  */
 fun roman(n: Int): String {
     val listOfChars = mutableListOf<String>()
-    return inner(n, listOfChars).joinToString().replace(", ", "")
+    return inner(n, listOfChars).joinToString(separator = "")
 }
 val leq = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
 val lev = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)

@@ -2,6 +2,8 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -81,16 +83,36 @@ fun digitNumber(n: Int): Int = TODO()
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
 fun fib(n: Int): Int {
-    val a = n
-    var a1 = 1
-    var a2 = 1
-    for (i in 0..a) {
-        val a4 = a2
-        a2 = a2 + a1
-        a1 = a4
+    var a1 = 0
+    var first = 1
+    var second = 1
+    if (n == 1 || n == 2) {
+       return 1
+    }
+    else {
+        for (i in 3..n) {
+            a1 = first + second
+            first = second
+            second = a1
+
+        }
     }
     return a1
 }
+
+
+
+
+//    var a0 = n
+//    var a1 = 1
+//    var a2 = 1
+//    for (i in 1..n) {
+//        a2 = a1
+//        a1 += a0
+//        a0 = a2
+//    }
+//    return a1
+
 
 /**
  * Простая (2 балла)

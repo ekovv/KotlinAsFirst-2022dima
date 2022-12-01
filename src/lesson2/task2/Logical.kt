@@ -24,8 +24,8 @@ fun isNumberHappy(number: Int): Boolean {
     val a2 = (number / 10) % 10 /* 3 цифра*/
     val a3 = (number / 100) % 10  /* 2 цифра */
     val a4 = number / 1000
-    if ((a1 + a2) == (a3 + a4)) return true
-    else return false
+    return (a1 + a2) == (a3 + a4)
+
 }
 
 /**
