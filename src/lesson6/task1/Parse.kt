@@ -154,19 +154,18 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
-//    val a1 = str.split(" ")
-//    var sum_idxs = 0
-//    for (i in 1..a1.size - 1) {
-//        if (a1[i].lowercase() == a1[i - 1].lowercase()) {
-//            if ([i-1] == i) {
-//                return sum_idxs - (a1[i-1].length + 1)
-//            }
-//            sum_idxs += a1[j].length + 1
-//
-//        }
-//    }
-//    return -1
+fun firstDuplicateIndex(str: String): Int {
+    val a1 = str.lowercase().split(" ")
+    var sum_idxs = 0
+    for (i in 1..a1.size - 1) {
+        if (a1[i]== a1[i - 1]) {
+            return sum_idxs
+        }
+        sum_idxs += a1[i-1].length + 1
+    }
+    return -1
+}
+
 
 
 /**
@@ -181,13 +180,13 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * Все цены должны быть больше нуля либо равны нулю.
  */
 fun mostExpensive(description: String): String {
-    if (!description.matches("""([А-я]+\s\d+\.?\d+?(; [А-я]+\s\d+\.?\d+?)*)""".toRegex())) return ""
+    if (!description.matches("""([А-я]+\s\d+[.]?\d+?;?\s?)*""".toRegex())) return ""
     val a1 = description.replace(";", "").split(" ")
     val a2 = mutableMapOf<String, Double>()
 //    try {
-        for (i in 1..a1.size - 1 step 2) {
-            a2[a1[i - 1]] = a1[i].toDouble()
-       }
+    for (i in 1..a1.size - 1 step 2) {
+        a2[a1[i - 1]] = a1[i].toDouble()
+    }
 //        return ""
 //    }
     var maxInt = 0.0
@@ -200,6 +199,7 @@ fun mostExpensive(description: String): String {
     }
     return maxStr
 }
+
 
 /**
  * Сложная (6 баллов)
