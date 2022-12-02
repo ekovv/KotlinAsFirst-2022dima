@@ -154,11 +154,15 @@ fun plusMinus(expression: String): Int = TODO()
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
 fun firstDuplicateIndex(str: String): Int {
-    val a1 = str.lowercase().split(" ")
-    var sumIdxs = 0
+    val a1 = str.split(" ")
+    var sum_idxs = 0
     for (i in 1..a1.size - 1) {
-        if (a1[i] == a1[i - 1]) {
-            return str.indexOf(a1[i])
+        if (a1[i].lowercase() == a1[i - 1].lowercase()) {
+            if ([i-1] == i) {
+                return sum_idxs - (a1[i-1].length + 1)
+            }
+            sum_idxs += a1[j].length + 1
+
         }
     }
     return -1
@@ -176,14 +180,13 @@ fun firstDuplicateIndex(str: String): Int {
  * Все цены должны быть больше нуля либо равны нулю.
  */
 fun mostExpensive(description: String): String {
-    if (!description.matches("""([А-я]+\s\d+\.?\d+?[;]?\s?)*""".toRegex())) return ""
+    if (!description.matches("""([А-я]+\s\d+\.?\d+?(; [А-я]+\s\d+\.?\d+?)*)""".toRegex())) return ""
     val a1 = description.replace(";", "").split(" ")
     val a2 = mutableMapOf<String, Double>()
 //    try {
         for (i in 1..a1.size - 1 step 2) {
             a2[a1[i - 1]] = a1[i].toDouble()
        }
-//    } catch (e: Throwable) {
 //        return ""
 //    }
     var maxInt = 0.0
