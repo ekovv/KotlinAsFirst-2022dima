@@ -4,6 +4,7 @@ package lesson6.task1
 
 
 import jdk.incubator.vector.DoubleVector
+import kotlinx.html.IframeName
 import kotlin.IllegalArgumentException
 
 // Урок 6: разбор строк, исключения
@@ -253,4 +254,12 @@ fun computeDeviceCells(cells: Int, commands: String, limit: Int): List<Int> = TO
 
 
 
-
+//fun myFun(movers: List<String>, pets: List<String>, limit: Int): List<String> {
+//    val map = mutableMapOf<String, String>()
+//    for (str in movers) {
+//        if (!str.matches(Regex("""([A-z]?[А-я]?; [А-я] - \d+;)+"""))) throw IllegalArgumentException()
+//
+//    }
+//    if (pets in movers)
+//
+//}

@@ -176,7 +176,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
         }
     }
     for ((key, value) in mapB) {
-        if ((a1[key] == null || value === a1[key])) {
+        if (!(a1[key] == null || value === a1[key])) {
             a1[key] = a1[key] + ", " + value
         }
         else {

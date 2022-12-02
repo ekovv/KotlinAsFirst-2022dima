@@ -153,3 +153,10 @@ class Tests {
         assertThrows(IllegalStateException::class.java) { computeDeviceCells(20, ">>>>>>>>>>>>>", 12) }
     }
 }
+
+//    fun myFun() {
+//        assertEquals("["Lux", "FastAndCheap"], myFun(["кот", "собака"]))
+//        assertEquals(4, plusMinus("2 + 2"))
+//        assertEquals(6, plusMinus("2 + 31 - 40 + 13"))
+//        assertEquals(-1, plusMinus("0 - 1"))
+//        assertThrows(IllegalArgumentException::class.java) { plusMinus("+2") }
