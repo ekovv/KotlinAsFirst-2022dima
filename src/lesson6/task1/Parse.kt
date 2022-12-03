@@ -181,7 +181,7 @@ fun firstDuplicateIndex(str: String): Int {
  */
 fun mostExpensive(description: String): String {
 //    if (!description.matches("""([А-я]+ \d+[.]?\d+?;? ?)*""".toRegex())) return ""
-    if (!description.matches("""\S+ \d+([.]\d+)?(; \S+ \d+([.]\d+)?)*""".toRegex())) return ""
+    if (!description.matches("""\S+\s\d+([.]\d+)?(;\s\S+\s\d+([.]\d+)?)*""".toRegex())) return ""
     val a1 = description.replace(";", "").split(" ")
     val a2 = mutableMapOf<String, Double>()
 //    try {
