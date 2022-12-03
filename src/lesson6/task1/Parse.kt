@@ -156,12 +156,12 @@ fun plusMinus(expression: String): Int = TODO()
  */
 fun firstDuplicateIndex(str: String): Int {
     val a1 = str.lowercase().split(" ")
-    var sum_idxs = 0
+    var sumIdxs = 0
     for (i in 1..a1.size - 1) {
         if (a1[i]== a1[i - 1]) {
-            return sum_idxs
+            return sumIdxs
         }
-        sum_idxs += a1[i-1].length + 1
+        sumIdxs += a1[i-1].length + 1
     }
     return -1
 }

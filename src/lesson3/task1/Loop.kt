@@ -100,20 +100,6 @@ fun fib(n: Int): Int {
     return a1
 }
 
-
-
-
-//    var a0 = n
-//    var a1 = 1
-//    var a2 = 1
-//    for (i in 1..n) {
-//        a2 = a1
-//        a1 += a0
-//        a0 = a2
-//    }
-//    return a1
-
-
 /**
  * Простая (2 балла)
  *
