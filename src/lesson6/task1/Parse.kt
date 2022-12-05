@@ -169,7 +169,7 @@ fun firstDuplicateIndex(str: String): Int {
     val a1 = str.lowercase().split(" ")
     var sumIdxs = 0
     for (i in 1..a1.size - 1) {
-        if (a1[i]== a1[i - 1]) {
+        if (a1[i] == a1[i - 1]) {
             return sumIdxs
         }
         sumIdxs += a1[i-1].length + 1
