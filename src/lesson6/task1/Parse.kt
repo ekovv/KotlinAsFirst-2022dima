@@ -132,7 +132,18 @@ fun bestLongJump(jumps: String): Int = TODO()
  * При нарушении формата входной строки, а также в случае отсутствия удачных попыток,
  * вернуть -1.
  */
-fun bestHighJump(jumps: String): Int = TODO()
+fun bestHighJump(jumps: String): Int {
+    if (!jumps.matches(Regex("""\S+ \S+( \S+ \S+)*"""))) return -1
+    var bhigh = -1
+    val a1 = jumps.split(" ")
+    for (jump in 0..a1.size - 1 step 2) {
+        if (("+" in a1[jump + 1]) && (a1[jump].toInt() > bhigh)) bhigh = a1[jump].toInt()
+
+    }
+    return bhigh
+
+
+}
 
 /**
  * Сложная (6 баллов)
@@ -181,7 +192,7 @@ fun firstDuplicateIndex(str: String): Int {
  */
 fun mostExpensive(description: String): String {
 //    if (!description.matches("""([А-я]+ \d+[.]?\d+?;? ?)*""".toRegex())) return ""
-    if (!description.matches("""\S+\s\d+([.]\d+)?(;\s\S+\s\d+([.]\d+)?)*""".toRegex())) return ""
+    if (!description.matches("""\S+ \d+([.]\d+)?(; \S+ \d+([.]\d+)?)*""".toRegex())) return ""
     val a1 = description.replace(";", "").split(" ")
     val a2 = mutableMapOf<String, Double>()
 //    try {
