@@ -4,6 +4,7 @@ package lesson7.task1
 
 import ru.spbstu.wheels.out
 import java.io.*
+import java.util.regex.Pattern
 
 // Урок 7: работа с файлами
 // Урок интегральный, поэтому его задачи имеют сильно увеличенную стоимость
@@ -84,15 +85,29 @@ fun deleteMarked(inputName: String, outputName: String) {
  *
  */
 fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
-    val linesFromFile = File(inputName).readLines().joinToString().lowercase()
-    val a1 = mutableMapOf<String, Int>()
-    println(linesFromFile)
+    val wordsFromFile = File(inputName).readLines().toString().lowercase().split(" ")
+    val countOfEls = mutableMapOf<String, Int>()
+    for (word in wordsFromFile) {
+        for (elem in substrings) {
+            val elemLow = elem.lowercase()
+            if (!countOfEls.containsKey(elem)) countOfEls[elem] = 0
+            if (elemLow in word) {
+                var count = 0
+                var wordBack = word
+                while (wordBack.contains(elemLow)) {
+                    count++
+                    wordBack = wordBack.replaceFirst(elemLow[0].toString(),"")
+                }
+//                val wordBack = word
+//                var count = word.length - word.replace(elemLow, "").length
+//                if (count == wordBack.length) count = 1
+                countOfEls[elem] = countOfEls[elem]!! + count
 
-    for (str in substrings) {
-        a1[str.lowercase()] = linesFromFile.count {  it.toString() == str.lowercase() }
+
+            }
+        }
     }
-    return a1
-
+    return countOfEls
 }
 
 
@@ -470,3 +485,10 @@ fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
     TODO()
 }
 
+
+//val linesFromFile = File(inputName).readText().lowercase()
+//val a1 = mutableMapOf<String, Int>()
+//for (str in substrings) {
+//    a1[str.lowercase()] = linesFromFile.count { it.toString() == str.lowercase() }
+//}
+////return a1
