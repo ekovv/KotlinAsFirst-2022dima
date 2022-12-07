@@ -137,8 +137,7 @@ fun bestHighJump(jumps: String): Int {
     var bhigh = -1
     val a1 = jumps.split(" ")
     for (jump in 0..a1.size - 1 step 2) {
-        if (("+" in a1[jump + 1]) && (a1[jump].toInt() > bhigh)) bhigh = a1[jump].toInt()
-
+        if ((a1[jump].toInt() > bhigh) &&("+" in a1[jump + 1])) bhigh = a1[jump].toInt()
     }
     return bhigh
 
