@@ -132,17 +132,7 @@ fun bestLongJump(jumps: String): Int = TODO()
  * При нарушении формата входной строки, а также в случае отсутствия удачных попыток,
  * вернуть -1.
  */
-fun bestHighJump(jumps: String): Int {
-    if (!jumps.matches(Regex("""\S+ \S+( \S+ \S+)*"""))) return -1
-    var bhigh = -1
-    val a1 = jumps.split(" ")
-    for (jump in 0..a1.size - 1 step 2) {
-        if (("+" in a1[jump + 1]) && (a1[jump].toInt() > bhigh)) bhigh = a1[jump].toInt()
-    }
-    return bhigh
-
-
-}
+fun bestHighJump(jumps: String): Int = TODO()
 
 /**
  * Сложная (6 баллов)
