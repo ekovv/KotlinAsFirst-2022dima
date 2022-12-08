@@ -95,6 +95,7 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
                 var count = 0
                 var wordBack = word.lowercase()
                 while (wordBack.contains(elemLow)) {
+
                     count++
                     wordBack = wordBack.replaceFirst(elemLow[0].toString(),"")
                 }
@@ -146,7 +147,28 @@ fun sibilants(inputName: String, outputName: String) {
  *
  */
 fun centerFile(inputName: String, outputName: String) {
-    TODO()
+//    var linesFromFile = File(inputName).readLines().toString().split(" ").toMutableList()
+//    val maxLen = linesFromFile.maxOrNull() ?: 0
+//    print(maxLen)
+//    var i = 0
+//    while (linesFromFile[i].length != maxLen) {
+//        linesFromFile[i] = " " + linesFromFile[i]
+//        if (linesFromFile[i].length != maxLen) linesFromFile[i] = linesFromFile[i] + " "
+//    }
+//    FileWriter(outputName)
+    val linesFromFile = File(inputName).readLines().toString().split(" ").toMutableList()
+    val maxLen = linesFromFile.maxOrNull() ?: 0
+    val i = 0
+    while (linesFromFile[i].length != maxLen) {
+        linesFromFile[i] = " " + linesFromFile[i]
+        //if (linesFromFile[i].length != maxLen) linesFromFile[i] = linesFromFile[i] + " "
+    }
+    //FileWriter(outputName)
+    File(outputName).bufferedWriter().use { out ->
+        linesFromFile.forEach {
+            out.write("${it}\n")
+        }
+    }
 }
 
 /**

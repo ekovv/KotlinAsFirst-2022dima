@@ -2,6 +2,8 @@
 
 package lesson5.task1
 
+import java.util.*
+
 // Урок 5: ассоциативные массивы и множества
 // Максимальное количество баллов = 14
 // Рекомендуемое количество баллов = 9
@@ -176,7 +178,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
         }
     }
     for ((key, value) in mapB) {
-        if (!(a1[key] == null || value === a1[key])) {
+        if (value == a1[key]) {
             a1[key] = a1[key] + ", " + value
         }
         else {
@@ -240,7 +242,19 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
  * Например:
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
-fun extractRepeats(list: List<String>): Map<String, Int> = TODO()
+fun extractRepeats(list: List<String>): Map<String, Int> {
+    val mapDupl = mutableMapOf<String, Int>()
+    for (el in list) {
+        if (Collections.frequency(list, el) > 1) {
+            if (mapDupl.containsKey(el)) {
+                mapDupl[el] = mapDupl[el]!! + 1
+            } else {
+                mapDupl[el] = 1
+            }
+        }
+    }
+    return mapDupl
+}
 
 /**
  * Средняя (3 балла)
@@ -309,17 +323,20 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
-fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
-    val mapOfPairs = mutableMapOf<String, Pair<Int, Int>>("answer" to Pair(-1,-1))
-    for (i in list.indices) {
-        for (j in 0..(i - 1)) {
-            if (list[i] + list[j] == number) {
-                mapOfPairs["answer"] = Pair(j,i)
-            }
-        }
-    }
-    return mapOfPairs["answer"]!!
-}
+fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
+//    val mapOfPairs = mutableMapOf<String, Pair<Int, Int>>("answer" to Pair(-1,-1))
+//    for (i in list.indices) {
+
+
+//    for (i in list.indices) {
+//        for (j in 0..(i - 1)) {
+//            if (list[i] + list[j] == number) {
+//                mapOfPairs["answer"] = Pair(j,i)
+//            }
+//        }
+//    }
+//    return mapOfPairs["answer"]!!
+
 
 /**
  * Очень сложная (8 баллов)
