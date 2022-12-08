@@ -93,7 +93,7 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
             if (!countOfEls.containsKey(elem)) countOfEls[elem] = 0
             if (elemLow in word) {
                 var count = 0
-                var wordBack = word
+                var wordBack = word.lowercase()
                 while (wordBack.contains(elemLow)) {
                     count++
                     wordBack = wordBack.replaceFirst(elemLow[0].toString(),"")
