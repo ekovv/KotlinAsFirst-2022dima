@@ -91,7 +91,7 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
         for (elem in substrings) {
             val elemLow = elem.lowercase()
             if (!countOfEls.containsKey(elem)) countOfEls[elem] = 0
-            if (elemLow in word) {
+            if (elemLow in word.lowercase()) {
                 var count = 0
                 var wordBack = word.lowercase()
                 while (wordBack.contains(elemLow)) {
