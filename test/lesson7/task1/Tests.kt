@@ -441,4 +441,35 @@ Basic, Ruby, Swift.
 
         File("temp.txt").delete()
     }
+
+
+
+    @Test
+    fun myFun() {
+        assertEquals(
+            mutableMapOf(
+                "Lada Vesta" to "Газпром",
+                "Lada Niva" to "Shell",
+                "BMW M5" to "Лукойл",
+                "Копейка" to "Газпром",
+                "Трактор" to "Лукойл",
+
+                ),
+            myFun(
+                mapOf(
+                    "Lada Vesta" to "бензин 98",
+                    "Lada Niva" to "дизель",
+                    "Lada Niva 2" to "говно",
+                    "BMW M5" to "бензин 95",
+                    "Копейка" to "бензин 88",
+                    "Трактор" to "солярка"
+                ),
+                gasStations = "Лукойл: бензин 95 - 44.66; дизель - 60.76; солярка - 10;\n" +
+                        "Газпром: бензин 98 - 50.00; бензин 88 - 34.30;\n" +
+                        "Shell: бензин 66 - 23.00; дизель - 55.30;"
+
+
+            )
+        )
+    }
 }

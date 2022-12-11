@@ -2,8 +2,11 @@
 
 package lesson7.task1
 
+
 import ru.spbstu.wheels.out
 import java.io.*
+import java.lang.IllegalArgumentException
+import java.lang.IllegalStateException
 import java.util.regex.Pattern
 
 // Урок 7: работа с файлами
@@ -85,13 +88,13 @@ fun deleteMarked(inputName: String, outputName: String) {
  *
  */
 fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
-    val wordsFromFile = File(inputName).readLines().toString().lowercase().split(" ")
+    val wordsFromFile = File(inputName).readText().lowercase().split(" ")
     val countOfEls = mutableMapOf<String, Int>()
     for (word in wordsFromFile) {
         for (elem in substrings) {
             val elemLow = elem.lowercase()
             if (!countOfEls.containsKey(elem)) countOfEls[elem] = 0
-            if (elemLow in word.lowercase()) {
+            if (elemLow in word) {
                 var count = 0
                 var wordBack = word.lowercase()
                 while (wordBack.contains(elemLow)) {
@@ -99,9 +102,7 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
                     count++
                     wordBack = wordBack.replaceFirst(elemLow[0].toString(),"")
                 }
-//                val wordBack = word
-//                var count = word.length - word.replace(elemLow, "").length
-//                if (count == wordBack.length) count = 1
+//
                 countOfEls[elem] = countOfEls[elem]!! + count
 
 
@@ -531,3 +532,104 @@ fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
 //    a1[str.lowercase()] = linesFromFile.count { it.toString() == str.lowercase() }
 //}
 ////return a1
+
+
+//Во входной строке содержится информация  о прогрессивном  налогообложении для физических лиц в зависимости от их годового доходов в следующем формате 30000
+// //  20000 у.е. - 0%; 40000 у.е. - 5%; 60000 y.e. - 10%; else - 25%
+// fun main(a: String, b: Int): List<String> {
+//     return nalog("20000 у.е. - 0%; 40000 у.е. - 5%; 60000 y.e. - 10%; else - 25%", 50000)
+// }
+
+
+
+// fun nalog(taxes: String, money: Int): List<String> {
+//     if (!taxes.matches(Regex("""(\d+ у.е. - \d+%; )+else - 25%"""))) throw IllegalArgumentException()
+//     val mapSale = mutableMapOf<String, Int>()
+//     val taxes1 = "20000 у.е. - 0%; 40000 у.е. - 5%; 60000 y.e. - 10%; else - 25%"
+//     val taxesSplit = taxes1.replace("else - 25%", "").split(Regex(""" у.е. - \d+%; """))
+//     val frick = listOf<String>()
+//     return frick
+
+// }
+
+
+
+fun myFun(carPetrols: Map<String, String>, gasStations: String) : Map<String, String> {
+    //if (!gasStations.matches("""([А-яA-z]+:( [А-я]+ (\d+ )?- \d+(.\d+)?;)+\s?)+""".toRegex())) throw IllegalArgumentException()
+    //val gasSpl = gasStations.replace(":", "").replace("-","").replace("\\s+".toRegex(), " ").replace(";", "").split(" ").toMutableList()
+    //получаем имя заправки сплитя по :
+    //получаем все виды бензина с ценой сплитя по
+
+    val linesfromgas = gasStations.split("\n")
+    val gasMap = mutableMapOf<String, String>()
+    linesfromgas.forEach {
+        val tmp = it.split(":")
+        //val arrayBenz = tmp[1].trim(';').split(";")
+        gasMap.put(tmp[0], tmp[1].trim(';')) }
+    val mapRes = mutableMapOf<String, Pair<String, Double>>()
+    for ((key, value) in carPetrols) {
+        mapRes[key] = Pair("", -1.0)
+        for ((keyGas,valueGas) in gasMap) {
+//            val a1 = gasSpl[str + 1].toString()
+            val xz = valueGas.trim(' ').replace(" - ", "_").replace("; ", "_").split("_")
+            if (xz.contains(value)) {
+                val zxc = xz[xz.indexOf(value) + 1].toDouble()
+//                if (mapRes.containsKey(key)) {
+                if (mapRes[key]!!.second > zxc || mapRes[key]!!.second == -1.0) {
+                    mapRes[key] = Pair(keyGas, zxc)//xz[xz.indexOf(value)]
+                }
+//                } else {
+//                    mapRes[key] = Pair(keyGas, zxc)
+//                }
+            }
+
+        }
+        if (mapRes[key]!!.second == -1.0 ) throw IllegalStateException()
+    }
+    val superRes = mutableMapOf<String, String>()
+    mapRes.forEach { superRes.put(it.key, it.value.first) }
+    return superRes
+
+}
+
+
+
+
+
+//var linesFromFile = File(inputName).readLines().toString().split("\n").toMutableList()
+//// val maxLen = linesFromFile.maxOrNull() ?: 0
+//var mx = 0
+//var ll = 0
+//for (line in File(inputName).readLines())  {
+//    ll = line.length
+//    if (mx < ll) {
+//        mx = ll
+//    }
+//}
+//for (i in 0..linesFromFile.size-1) {
+//    linesFromFile[i] = linesFromFile[i].trim { it <= ' ' }
+//    if (linesFromFile[i].length != mx) linesFromFile[i] = " " + linesFromFile[i]
+//    if (linesFromFile[i].length != mx) linesFromFile[i] = linesFromFile[i] + " "
+//}
+////FileWriter(outputName)
+//// val te = linesFromFile.joinToString(prefix = "",
+////     separator ="\r\n",
+////     postfix = "")
+//// File(outputName).writeText(te)
+//File(outputName).bufferedWriter().use { out ->
+//    linesFromFile.forEach {
+//        out.write("${it}\r\n")
+//    }
+//}
+
+
+
+//    var linesFromFile = File(inputName).readLines().toString().split(" ").toMutableList()
+//    val maxLen = linesFromFile.maxOrNull() ?: 0
+//    print(maxLen)
+//    var i = 0
+//    while (linesFromFile[i].length != maxLen) {
+//        linesFromFile[i] = " " + linesFromFile[i]
+//        if (linesFromFile[i].length != maxLen) linesFromFile[i] = linesFromFile[i] + " "
+//    }
+//    FileWriter(outputName)
