@@ -246,12 +246,9 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
 fun extractRepeats(list: List<String>): Map<String, Int> {
     val mapDupl = mutableMapOf<String, Int>()
     for (el in list) {
-        if (Collections.frequency(list, el) > 1) {
-            if (mapDupl.containsKey(el)) {
-                mapDupl[el] = mapDupl[el]!! + 1
-            } else {
-                mapDupl[el] = 1
-            }
+        val freq = Collections.frequency(list, el)
+        if (freq > 1) {
+            mapDupl[el] = freq
         }
     }
     return mapDupl
@@ -325,15 +322,15 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
-    val mapOfPairs = mutableMapOf<String, Pair<Int, Int>>("answer" to Pair(-1, -1))
+    //val mapOfPairs = mutableMapOf<String, Pair<Int, Int>>("answer" to Pair(-1, -1))
     for (i in list.indices) {
         for (j in 0..(i - 1)) {
             if (list[i] + list[j] == number) {
-                mapOfPairs["answer"] = Pair(j, i)
+                return Pair(j, i)
             }
         }
     }
-    return mapOfPairs["answer"]!!
+    return Pair(-1, -1)
 }
 
 /**
