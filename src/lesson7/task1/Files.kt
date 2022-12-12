@@ -68,14 +68,14 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Подчёркивание в середине и/или в конце строк значения не имеет.
  */
 fun deleteMarked(inputName: String, outputName: String) {
-    val linesFromFile = File(inputName).readLines()
-    var info = ""
-    for (line in linesFromFile) {
-        if (line == "" || line.first() != '_') {
-            info += line + "\n"
-        }
+    File(outputName).bufferedWriter().use { writer ->
+        File(inputName).readLines().asSequence()
+            .filter { line -> line.firstOrNull() != '_' }
+            .forEach { line ->
+                writer.write(line)
+                writer.newLine()
+            }
     }
-    FileWriter(outputName).use { it.write(info) }
 }
 
 /**
@@ -88,28 +88,26 @@ fun deleteMarked(inputName: String, outputName: String) {
  *
  */
 fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
-    val wordsFromFile = File(inputName).readText().lowercase().split(" ")
-    val countOfEls = mutableMapOf<String, Int>()
-    for (word in wordsFromFile) {
-        for (elem in substrings) {
-            val elemLow = elem.lowercase()
-            if (!countOfEls.containsKey(elem)) countOfEls[elem] = 0
-            if (elemLow in word) {
-                var count = 0
-                var wordBack = word.lowercase()
-                while (wordBack.contains(elemLow)) {
-
-                    count++
-                    wordBack = wordBack.replaceFirst(elemLow[0].toString(),"")
-                }
+//    val wordsFromFile = File(inputName).readText().lowercase().split(" ")
+//    val countOfEls = mutableMapOf<String, Int>()
+//    for (word in wordsFromFile) {
+//        for (elem in substrings) {
+//            val elemLow = elem.lowercase()
+//            if (!countOfEls.containsKey(elem)) countOfEls[elem] = 0
+//            if (elemLow in word) {
+//                var count = 0
+//                var wordBack = word
+//                while (wordBack.contains(elemLow)) {
 //
-                countOfEls[elem] = countOfEls[elem]!! + count
-
-
-            }
-        }
-    }
-    return countOfEls
+//                    count++
+//                    wordBack = word.replaceFirst(elemLow[0].toString(),"")
+//                }
+//                countOfEls[elem] = countOfEls[elem]!! + count
+//            }
+//        }
+//    }
+//    return countOfEls
+    TODO()
 }
 
 
@@ -160,7 +158,6 @@ fun centerFile(inputName: String, outputName: String) {
 //    }
 //    FileWriter(outputName)
 
-//    var linesFromFile = File(inputName).readLines().toString().split("\n").toMutableList()
 //    // val maxLen = linesFromFile.maxOrNull() ?: 0
 //    var mx = 0
 //    var ll = 0
@@ -175,18 +172,31 @@ fun centerFile(inputName: String, outputName: String) {
 //        if (linesFromFile[i].length != mx) linesFromFile[i] = " " + linesFromFile[i]
 //        if (linesFromFile[i].length != mx) linesFromFile[i] = linesFromFile[i] + " "
 //    }
-//    //FileWriter(outputName)
-//    // val te = linesFromFile.joinToString(prefix = "",
-//    //     separator ="\r\n",
-//    //     postfix = "")
-//    // File(outputName).writeText(te)
-//    File(outputName).bufferedWriter().use { out ->
-//        linesFromFile.forEach {
-//            out.write("${it}\r\n")
-//        }
-//    }
-    TODO()
-
+//    //FileWriter(outputName).write()
+//     val te = linesFromFile.joinToString(prefix = "",
+//         separator ="\r\n",
+//         postfix = "")
+//     File(outputName).writeText(te)
+////    File(outputName).bufferedWriter().use { out ->
+////        linesFromFile.forEach {
+////            out.write("${it}\r\n")
+////        }
+////    }
+    val linesFromFile = File(inputName).readLines()
+    val trimLines = mutableListOf<String>()
+    var maxLineLength = 0
+    linesFromFile.forEach { line ->
+        val trimLine = line.trim()
+        maxLineLength = kotlin.math.max(maxLineLength, trimLine.length)
+        trimLines.add(trimLine)
+    }
+    File(outputName).bufferedWriter().use { writer ->
+        trimLines.forEach { trimLine ->
+            val requireSpaceLength = (maxLineLength - trimLine.length) / 2
+            writer.write(" ".repeat(requireSpaceLength) + trimLine)
+            writer.newLine()
+        }
+    }
 }
 
 /**

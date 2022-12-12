@@ -127,7 +127,7 @@ Basic, Ruby, Swift.
            Во входном файле с именем inputName содержится некоторый текст.
         Вывести его в выходной файл с именем outputName, выровняв по центру."""
         )
-        File("temp.txt").delete()
+        //File("temp.txt").delete()
 
     }
 
