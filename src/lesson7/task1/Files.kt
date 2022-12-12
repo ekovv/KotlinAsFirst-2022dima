@@ -335,7 +335,7 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
     }
     println(out)
     File(outputName).bufferedWriter().use { text ->
-        text.write(out)
+        text.write(out.trim(','))
     }
 }
 
