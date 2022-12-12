@@ -190,11 +190,11 @@ fun centerFile(inputName: String, outputName: String) {
         maxLineLength = kotlin.math.max(maxLineLength, trimLine.length)
         trimLines.add(trimLine)
     }
-    File(outputName).bufferedWriter().use { writer ->
+    File(outputName).bufferedWriter().use { text ->
         trimLines.forEach { trimLine ->
             val requireSpaceLength = (maxLineLength - trimLine.length) / 2
-            writer.write(" ".repeat(requireSpaceLength) + trimLine)
-            writer.newLine()
+            text.write(" ".repeat(requireSpaceLength) + trimLine)
+            text.newLine()
         }
     }
 }
