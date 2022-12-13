@@ -8,6 +8,7 @@ import java.io.*
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 import java.util.regex.Pattern
+import kotlin.math.max
 
 // Урок 7: работа с файлами
 // Урок интегральный, поэтому его задачи имеют сильно увеличенную стоимость
@@ -227,9 +228,53 @@ fun centerFile(inputName: String, outputName: String) {
  * 8) Если входной файл удовлетворяет требованиям 1-7, то он должен быть в точности идентичен выходному файлу
  */
 fun alignFileByWidth(inputName: String, outputName: String) {
-    val alignLinesFromFile = File(inputName).readText()
-    
+    val alignLineFromFile = File(inputName).readLines()
+    val outLineFromFile = File(outputName).bufferedWriter()
+    val text = mutableListOf<Pair<List<String>, Int>>()
+    val emptyLine = listOf("")
+    var maxLength = 0
+    alignLineFromFile.forEach { line ->
+        val words = line.trim().split(" ").filter { it != "" }
+        var lineLen = 0
+        for (word in words) {
+            lineLen += word.length
+        }
+        if (lineLen != 0) {
+            lineLen += words.size - 1
+        }
+        maxLength = max(maxLength, lineLen)
+        if (words.isEmpty()) {
+            text.add(emptyLine to lineLen)
+        } else {
+            text.add(words to lineLen)
+        }
+    }
+    outLineFromFile.use { writer ->
+        text.forEach { (words, lineLength) ->
+            if (words.size == 1) {
+                writer.write(words.first())
+                writer.newLine()
+                return@forEach
+            }
+            val requireNumSpaces = maxLength - lineLength
+            val numSegments = words.size - 1
+            val minSpacesLength = requireNumSpaces / numSegments + 1
+            var remainingSpaces = requireNumSpaces % numSegments
+            for (i in 0..words.size - 2) {
+                var spacesNum = minSpacesLength
+                if (remainingSpaces > 0) {
+                    spacesNum += 1
+                    remainingSpaces -= 1
+                }
+                writer.write(words[i] + " ".repeat(spacesNum))
+            }
+            writer.write(words.last())
+            writer.newLine()
+        }
+    }
 }
+
+
 
 /**
  * Средняя (14 баллов)
