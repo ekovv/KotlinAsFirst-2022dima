@@ -3,7 +3,9 @@
 package lesson3.task1
 
 import lesson1.task1.sqr
+import kotlin.math.abs
 import kotlin.math.pow
+import kotlin.math.round
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -74,16 +76,30 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
-
+fun digitNumber(n: Int): Int {
+    var a1 = abs(n)
+    var a2 = 0
+    if (a1 == 0) {
+        a2 = 1
+    }
+    while (a1 > 0) {
+        a2 += 1
+        a1 /= 10
+    }
+    return a2
+}
 /**
  * Простая (2 балла)
  *
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
-
+fun fib(n: Int): Int {
+    return round(((1.61803398874989484810.pow(n) - -0.61803398874989484830.toDouble().pow(n)) / 2.23606797749978969640)).toInt()
+}
+//val fibbed = (((1.618034.toDouble().pow(n) - n.toDouble().pow(-0.618034)) / sqrt(5.0)))
+////return fibbed.toInt()
+//math.Round((math.Pow(1.61803398874989484810, float64(n))) - math.Pow(-0.61803398874989484830, float64(n))) / float64(2.23606797749978969640))
 /**
  * Простая (2 балла)
  *
@@ -215,7 +231,27 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var a1 = 0
+    var a2 = 0
+    var count = 0
+    while (count < n) {
+        a1 += 1
+        a2 = a1.toDouble().pow(2).toInt()
+        count = count + digitNumber(n = a2)
+    }
+    var a4 = count - n
+    while (a4 > 0) {
+        a4 -= 1
+        a2 /= 10
+    }
+    val a3 = a2 % 10
+    if (n == count) {
+        return a3
+    }
+    return a3
+}
+
 
 /**
  * Сложная (5 баллов)
@@ -226,5 +262,19 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    var a1 = 0
+    var a2 = 0
+    while (a1 < n) {
+        a2 += 1
+        a1 += lesson3.task1.digitNumber(n = fib(n = a2))
+    }
+    a2 = fib(n = a2)
+    while (n != a1) {
+        a2 /= 10
+        a1 -= 1
+    }
+    val a3 = a2 % 10
+    return a3
+}
 
