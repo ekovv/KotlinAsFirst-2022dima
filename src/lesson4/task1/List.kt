@@ -3,6 +3,7 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import lesson3.task1.minDivisor
 import kotlin.math.sqrt
 
 // Урок 4: списки
@@ -190,7 +191,16 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> {
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> = TODO()
+fun factorize(n: Int): List<Int> {
+    val mutableList = mutableListOf<Int>()
+    var num = n
+    while (num != 1) {
+        val element = minDivisor(num)
+        mutableList.add(element)
+        num /= element
+    }
+    return mutableList
+}
 
 /**
  * Сложная (4 балла)
@@ -199,7 +209,7 @@ fun factorize(n: Int): List<Int> = TODO()
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*")
 
 /**
  * Средняя (3 балла)
