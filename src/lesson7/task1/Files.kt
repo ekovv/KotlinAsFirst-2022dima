@@ -3,11 +3,7 @@
 package lesson7.task1
 
 
-import ru.spbstu.wheels.out
 import java.io.*
-import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
-import java.util.regex.Pattern
 import kotlin.math.max
 
 // Урок 7: работа с файлами
@@ -134,15 +130,15 @@ fun sibilants(inputName: String, outputName: String) {
 fun centerFile(inputName: String, outputName: String) {
     val linesFromFile = File(inputName).readLines()
     val trimLines = mutableListOf<String>()
-    var maxLineLength = 0
+    var maxLineLen = 0
     linesFromFile.forEach { line ->
         val trimLine = line.trim()
-        maxLineLength = kotlin.math.max(maxLineLength, trimLine.length)
+        maxLineLen = kotlin.math.max(maxLineLen, trimLine.length)
         trimLines.add(trimLine)
     }
     File(outputName).bufferedWriter().use { text ->
         trimLines.forEach { trimLine ->
-            val requireSpaceLength = (maxLineLength - trimLine.length) / 2
+            val requireSpaceLength = (maxLineLen - trimLine.length) / 2
             text.write(" ".repeat(requireSpaceLength) + trimLine)
             text.newLine()
         }
