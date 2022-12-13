@@ -69,8 +69,10 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Подчёркивание в середине и/или в конце строк значения не имеет.
  */
 fun deleteMarked(inputName: String, outputName: String) {
-    File(outputName).bufferedWriter().use { writer ->
-        File(inputName).readLines().asSequence()
+    val linesFromFile = File(inputName).readLines()
+    val linesOutFromFile = File(outputName).bufferedWriter()
+    linesOutFromFile.use { writer ->
+        linesFromFile.asSequence()
             .filter { line -> line.firstOrNull() != '_' }
             .forEach { line ->
                 writer.write(line)
@@ -89,25 +91,6 @@ fun deleteMarked(inputName: String, outputName: String) {
  *
  */
 fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
-//    val wordsFromFile = File(inputName).readText().lowercase().split(" ")
-//    val countOfEls = mutableMapOf<String, Int>()
-//    for (word in wordsFromFile) {
-//        for (elem in substrings) {
-//            val elemLow = elem.lowercase()
-//            if (!countOfEls.containsKey(elem)) countOfEls[elem] = 0
-//            if (elemLow in word) {
-//                var count = 0
-//                var wordBack = word
-//                while (wordBack.contains(elemLow)) {
-//
-//                    count++
-//                    wordBack = word.replaceFirst(elemLow[0].toString(),"")
-//                }
-//                countOfEls[elem] = countOfEls[elem]!! + count
-//            }
-//        }
-//    }
-//    return countOfEls
     TODO()
 }
 
@@ -149,40 +132,6 @@ fun sibilants(inputName: String, outputName: String) {
  *
  */
 fun centerFile(inputName: String, outputName: String) {
-//    var linesFromFile = File(inputName).readLines().toString().split(" ").toMutableList()
-//    val maxLen = linesFromFile.maxOrNull() ?: 0
-//    print(maxLen)
-//    var i = 0
-//    while (linesFromFile[i].length != maxLen) {
-//        linesFromFile[i] = " " + linesFromFile[i]
-//        if (linesFromFile[i].length != maxLen) linesFromFile[i] = linesFromFile[i] + " "
-//    }
-//    FileWriter(outputName)
-
-//    // val maxLen = linesFromFile.maxOrNull() ?: 0
-//    var mx = 0
-//    var ll = 0
-//    for (line in linesFromFile) {
-//        ll = line.length
-//        if (mx < ll) {
-//            mx = ll
-//        }
-//    }
-//    for (i in 0..linesFromFile.size-1) {
-//        linesFromFile[i] = linesFromFile[i].trim { it <= ' ' }
-//        if (linesFromFile[i].length != mx) linesFromFile[i] = " " + linesFromFile[i]
-//        if (linesFromFile[i].length != mx) linesFromFile[i] = linesFromFile[i] + " "
-//    }
-//    //FileWriter(outputName).write()
-//     val te = linesFromFile.joinToString(prefix = "",
-//         separator ="\r\n",
-//         postfix = "")
-//     File(outputName).writeText(te)
-////    File(outputName).bufferedWriter().use { out ->
-////        linesFromFile.forEach {
-////            out.write("${it}\r\n")
-////        }
-////    }
     val linesFromFile = File(inputName).readLines()
     val trimLines = mutableListOf<String>()
     var maxLineLength = 0
