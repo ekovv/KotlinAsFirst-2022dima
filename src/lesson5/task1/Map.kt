@@ -247,6 +247,7 @@ fun extractRepeats(list: List<String>): Map<String, Int> {
     val mapDupl = mutableMapOf<String, Int>()
     for (el in list) {
         val freq = Collections.frequency(list, el)
+
         if (freq > 1) {
             mapDupl[el] = freq
         }
@@ -322,16 +323,34 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
-    for (i in list.indices) {
-        for (j in 0..(i - 1)) {
-            if (list[i] + list[j] == number) {
-                return Pair(j, i)
-            }
+    val map = mutableMapOf<Int,Int>()
+    for (i in 0..list.size - 1) {
+        if (list[i] + list[i+1] == number) {
+             map.put(i, i-1)
+             println(map)
         }
     }
     return Pair(-1, -1)
-}
 
+//    var mapOfPairs = mutableMapOf<Int, Int>()
+//    for (i in 0..list.size - 1) {
+//        if (mapOfPairs.containsKey(list[i])) {
+//            return (Pair(first = mapOfPairs[list[i]], second = i) as Pair<Int, Int>)
+//        } else {
+//            Pair((number - mapOfPairs[list[i]]!!) = i)
+//        }
+//
+//    }
+//    return Pair(-1, -1)
+//    val numToIndex = mutableMapOf<Int, Int>()
+//    for (i in list.indices) {
+//        if (numToIndex.containsKey(list[i]))
+//            return Pair(numToIndex[i]!!, i)
+//        else numToIndex[number - i] = i
+//    }
+//    return Pair(-1, -1)
+
+}
 /**
  * Очень сложная (8 баллов)
  *

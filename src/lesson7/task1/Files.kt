@@ -3,7 +3,11 @@
 package lesson7.task1
 
 
+import lesson8.task1.hexagonByThreePoints
 import java.io.*
+import java.lang.IllegalStateException
+import java.lang.StringBuilder
+import java.net.CacheRequest
 import kotlin.math.max
 
 // Урок 7: работа с файлами
@@ -307,27 +311,7 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun chooseLongestChaoticWord(inputName: String, outputName: String) {
-    val wordsFromFile = File(inputName).readText().trim(' ').split("\n")
-    var out = ""
-    for (w in wordsFromFile) {
-        val nw = w.lowercase()
-        val we = mutableSetOf<String>()
-        we.addAll(nw.split(""))
-        val lenW = w.length
-        val lenOut = out.split(", ")[0].length
-        if (we.size != lenW + 1) {
-            continue
-        }
-        if (lenOut == lenW) {
-            out += ", " + w
-        } else if (lenOut < lenW) {
-            out = w
-        }
-    }
-    println(out)
-    File(outputName).bufferedWriter().use { text ->
-        text.write(out.trim(','))
-    }
+    TODO()
 }
 
 
@@ -524,8 +508,28 @@ fun markdownToHtml(inputName: String, outputName: String) {
 fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
     TODO()
 }
-
-
+//fun req(places: MutableList<MutableList<Boolean>>, requests: Map<String, Pair<Int, Int>>): Map<String, MutableList<Int>> {
+//    var c = 0
+//    val answer = mutableMapOf<String, MutableList<Int>>()
+//    for ((key, value) in requests) {
+//        c = value.second
+//        if (value.first > places.size - 1) throw IllegalStateException()
+//        for (i in places[value.first].indices) {
+//            if (!places[value.first][i]) {
+//                c--
+//                if (key in answer) {
+//                    answer[key]!!.add(i)
+//                } else {
+//                    answer[key] = mutableListOf(i)
+//                }
+//                if (c == 0) {
+//                    break
+//                }
+//            }
+//        }
+//    }
+//    return answer
+//}
 /**
  * Сложная (25 баллов)
  *
