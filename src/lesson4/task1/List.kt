@@ -294,15 +294,3 @@ fun inner(num: Int, listOfChars: MutableList<String>): MutableList<String> {
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
 fun russian(n: Int): String = TODO()
-
-
-
-fun prevMultOfThree(n: Int): Int? {
-    // have fun :)
-    if (n % 3 == 0) return n
-    if (n == 0) return null
-    while (n % 3 != 0) {
-         Integer.valueOf(n / 10)
-    }
-    return n
-}
