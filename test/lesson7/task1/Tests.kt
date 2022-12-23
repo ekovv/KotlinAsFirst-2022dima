@@ -1,5 +1,6 @@
 package lesson7.task1
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
@@ -441,35 +442,61 @@ Basic, Ruby, Swift.
 
         File("temp.txt").delete()
     }
-
-
-
-    @Test
-    fun myFun() {
-        assertEquals(
-            mutableMapOf(
-                "Lada Vesta" to "Газпром",
-                "Lada Niva" to "Shell",
-                "BMW M5" to "Лукойл",
-                "Копейка" to "Газпром",
-                "Трактор" to "Лукойл",
-
-                ),
-            myFun(
-                mapOf(
-                    "Lada Vesta" to "бензин 98",
-                    "Lada Niva" to "дизель",
-                    "Lada Niva 2" to "говно",
-                    "BMW M5" to "бензин 95",
-                    "Копейка" to "бензин 88",
-                    "Трактор" to "солярка"
-                ),
-                gasStations = "Лукойл: бензин 95 - 44.66; дизель - 60.76; солярка - 10;\n" +
-                        "Газпром: бензин 98 - 50.00; бензин 88 - 34.30;\n" +
-                        "Shell: бензин 66 - 23.00; дизель - 55.30;"
-
-
-            )
-        )
-    }
 }
+//    @Test
+//    fun req() {
+//        assertEquals(
+//            mapOf("Вася" to mutableListOf(1), "Петя" to mutableListOf(1)), req(
+//                mutableListOf(
+//                    mutableListOf(true, false, false, false, true, true),
+//                    mutableListOf(true, false, true, false)
+//                ), mapOf(
+//                    "Вася" to Pair(2, 1), "Петя" to Pair(1, 1)
+//                )
+//            )
+//        )
+//        Assertions.assertThrows(IllegalStateException::class.java) {
+//            req(
+//                mutableListOf(
+//                    mutableListOf(true, true, true, false, true, true),
+//                    mutableListOf(true, true, true, false)
+//                ), mapOf(
+//                    "Вася" to Pair(222,333), "Петя" to Pair(243, 1)
+//                )
+//            )
+//        }
+//    }
+//
+//}
+
+
+//    @Test
+//    fun myFun() {
+//        assertEquals(
+//            mutableMapOf(
+//                "Lada Vesta" to "Газпром",
+//                "Lada Niva" to "Shell",
+//                "BMW M5" to "Лукойл",
+//                "Копейка" to "Газпром",
+//                "Трактор" to "Лукойл",
+//
+//                ),
+//            myFun(
+//                mapOf(
+//                    "Lada Vesta" to "бензин 98",
+//                    "Lada Niva" to "дизель",
+//                    "Lada Niva 2" to "говно",
+//                    "BMW M5" to "бензин 95",
+//                    "Копейка" to "бензин 88",
+//                    "Трактор" to "солярка"
+//                ),
+//                gasStations = "Лукойл: бензин 95 - 44.66; дизель - 60.76; солярка - 10;\n" +
+//                        "Газпром: бензин 98 - 50.00; бензин 88 - 34.30;\n" +
+//                        "Shell: бензин 66 - 23.00; дизель - 55.30;"
+//
+//
+//            )
+//        )
+//    }
+//}
+

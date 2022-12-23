@@ -186,8 +186,8 @@ fun mostExpensive(description: String): String {
     for (i in 1..a1.size - 1 step 2) {
         a2[a1[i - 1]] = a1[i].toDouble()
     }
-    var maxInt = 0.0
     var maxStr = ""
+    var maxInt = 0.0
     for ((key, value) in a2) {
         if (value >= maxInt) {
             maxStr = key
